@@ -1,0 +1,36 @@
+#include <iostream>
+#include <windows.h>
+
+using namespace std;
+
+int main() {
+    SetConsoleCP(65001);
+    SetConsoleOutputCP(65001);
+    int k;
+    char char1, char2;
+
+    cout << "Введіть розмір сторони квадрата (k): ";
+    cin >> k;
+    cout << "Введіть перший символ: ";
+    cin >> char1;
+    cout << "Введіть другий символ: ";
+    cin >> char2;
+
+    cout << "\nВаш результат:\n" << endl;
+
+    for (int i = 0; i < k; ++i) {
+        for (int j = 1; j <= k; ++j) {
+            if (j % 2 != 0) {
+                cout << char1 << " ";
+            }
+            else {
+                cout << char2 << " ";
+            }
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
+
+    

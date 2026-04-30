@@ -16,7 +16,7 @@ int main() {
     cout << "Введіть другий символ: ";
     cin >> char2;
 
-    cout << "\nВаш результат:\n" << endl;
+    cout << "\n Результат:\n" << endl;
 
     for (int i = 0; i < k; ++i) {
         for (int j = 1; j <= k; ++j) {

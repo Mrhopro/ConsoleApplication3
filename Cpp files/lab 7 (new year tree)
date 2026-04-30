@@ -1,0 +1,46 @@
+#include <iostream>
+#include <windows.h>
+
+using namespace std;
+
+int main() {
+
+    SetConsoleCP(65001);
+    SetConsoleOutputCP(65001);
+
+    char s;
+    int tiers, startHeight, step;
+
+    cout << "Введіть символ: ";
+    cin >> s;
+    cout << "Введіть кількість ярусів: ";
+    cin >> tiers;
+    cout << "Введіть висоту першого ярусу: ";
+    cin >> startHeight;
+    cout << "Введіть крок збільшення: ";
+    cin >> step;
+
+    int maxHeight = startHeight + (tiers - 1) * step;
+
+    cout << endl;
+
+    for (int t = 0; t < tiers; t++) {
+        int currentHeight = startHeight + t * step;
+
+        for (int i = 1; i <= currentHeight; i++) {
+            for (int j = 1; j <= maxHeight - i; j++) {
+                cout << " ";
+            }
+
+            for (int j = 1; j <= 2 * i - 1; j++) {
+                cout << s;
+            }
+            cout << endl;
+        }
+    }
+
+    for (int i = 1; i <= maxHeight - 1; i++) cout << " ";
+    cout << "|" << endl;
+
+    return 0;
+}

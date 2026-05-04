@@ -1,0 +1,48 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+#include <windows.h>
+
+using namespace std;
+
+int main() {
+    SetConsoleCP(65001);
+    SetConsoleOutputCP(65001);
+
+    double a, b, h;
+
+    cout << "Введіть початок відрізка (a): ";
+    cin >> a;
+    cout << "Введіть кінець відрізка (b): ";
+    cin >> b;
+    cout << "Введіть крок (h): ";
+    cin >> h;
+
+    cout << "\n" << string(45, '-') << endl;
+    cout << setw(10) << "x" << " | " 
+         << setw(14) << "y1 = sin(x)" << " | " 
+         << setw(14) << "y2 = cos(x)" << endl;
+    cout << string(45, '-') << endl;
+
+    double x = a;
+
+    if (h <= 0 && a < b) {
+        cout << "Помилка: крок h має бути більшим за нуль!" << endl;
+    } else {
+        do {
+            double y1 = sin(x);
+            double y2 = cos(x);
+
+            cout << fixed << setprecision(4)
+                 << setw(10) << x << " | " 
+                 << setw(14) << y1 << " | " 
+                 << setw(14) << y2 << endl;
+
+            x += h;
+        } while (x <= b + h / 1000.0);
+    }
+
+    cout << string(45, '-') << endl;
+
+    return 0;
+}

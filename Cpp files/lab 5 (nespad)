@@ -1,0 +1,35 @@
+#include <iostream>
+#include <windows.h>
+
+using namespace std;
+
+int main() {
+    SetConsoleCP(65001);
+    SetConsoleOutputCP(65001);
+
+    double current, next;
+    bool isNonDecreasing = true;
+
+    cout << "Вводьте числа (для завершення введіть 666):" << endl;
+    cin >> current;
+
+    if (current != 666) {
+        do {
+            cin >> next;
+            if (next != 666) {
+                if (next < current) {
+                    isNonDecreasing = false;
+                }
+                current = next;
+            }
+        } while (next != 666);
+
+        if (isNonDecreasing) {
+            cout << "Послідовність є неспадною." << endl;
+        } else {
+            cout << "Послідовність не є неспадною." << endl;
+        }
+    }
+
+    return 0;
+}

@@ -1,0 +1,46 @@
+#include <iostream>
+#include <windows.h>
+
+using namespace std;
+
+int evcreq(int a, int b) {
+
+    int temp_a = abs(a);
+    int temp_b = abs(b);
+
+    if (temp_a == 0 || temp_b == 0) {
+        return (temp_a + temp_b);
+    }
+    else {
+        if (temp_a != 0 && temp_b != 0) {
+            if (temp_a > temp_b) {
+                temp_a %= temp_b;
+            }
+            else
+            {
+                temp_b %= temp_a;
+            }
+
+            return evcreq(temp_a, temp_b);
+        }
+        else
+        {
+            return (temp_a + temp_b);
+        }
+        
+    }
+}
+
+int main() {
+    SetConsoleCP(65001);
+    SetConsoleOutputCP(65001);
+    
+    int a, b;
+    cout << "Введіть два числа: ";
+    cin >> a >> b;
+
+    int result = evcreq(a, b);
+    cout << "НДС: " << result << endl;
+
+    return 0;
+}

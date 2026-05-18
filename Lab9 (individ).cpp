@@ -4,17 +4,10 @@
 using namespace std;
 
 int recursionfunc(int number) {
-    if (number == 0) {
-        return 0;
-    }
-
-	for (int i = 0; number > 0; i++) {
-		number /= 10;
-		if (number == 0) {
-			return i + 1;
-		}
-	}
-	return 1 + recursionfunc(number);
+ if(number / 10 == 0) {
+   return 1;
+  }
+	return 1 + recursionfunc(number / 10);
 }
 
 int main() {

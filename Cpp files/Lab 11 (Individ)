@@ -1,0 +1,65 @@
+#include <iostream>
+#include "windows.h"
+
+using namespace std;
+
+const int ROWS = 3;
+const int COLS = 4;
+
+void countEvenInColumns(const int matrix[ROWS][COLS], int evenCounts[COLS]) {
+    for (int j = 0; j < COLS; ++j) {
+        evenCounts[j] = 0;
+        for (int i = 0; i < ROWS; ++i) {
+            if (matrix[i][j] % 2 == 0) {
+                evenCounts[j]++;
+            }
+        }
+    }
+}
+
+void swapFirstAndLastColumns(int matrix[ROWS][COLS]) {
+    for (int i = 0; i < ROWS; ++i) {
+        int temp = matrix[i][0];
+        matrix[i][0] = matrix[i][COLS - 1];
+        matrix[i][COLS - 1] = temp;
+    }
+}
+
+int main() {
+    SetConsoleCP(65001);
+    SetConsoleOutputCP(65001);
+
+    int myMatrix[ROWS][COLS] = {
+        {1, 2, 3, 4},
+        {5, 6, 7, 8},
+        {9, 10, 11, 12}
+    };
+
+    cout << "Початкова матриця:\n";
+    for (int i = 0; i < ROWS; ++i) {
+        for (int j = 0; j < COLS; ++j) {
+            cout << myMatrix[i][j] << "\t";
+        }
+        cout << endl;
+    }
+
+    int columnsResults[COLS] = { 0 };
+    countEvenInColumns(myMatrix, columnsResults);
+
+    cout << "\nКількість парних елементів у стовпцях:\n";
+    for (int j = 0; j < COLS; ++j) {
+        cout << "Стовпець " << j + 1 << ": " << columnsResults[j] << endl;
+    }
+
+    swapFirstAndLastColumns(myMatrix);
+
+    cout << "\nМатриця після зміни місцями першого та останнього стовпців:\n";
+    for (int i = 0; i < ROWS; ++i) {
+        for (int j = 0; j < COLS; ++j) {
+            cout << myMatrix[i][j] << "\t";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}

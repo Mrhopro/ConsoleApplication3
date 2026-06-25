@@ -1,0 +1,74 @@
+#include <iostream>
+#include <windows.h>
+
+using namespace std;
+
+int** createExtendedMatrix(int** src, int rows, int cols) {
+	int** dest = new int*[rows];
+    
+    for (int i = 0; i < rows; i++) {
+        dest[i] = new int[cols + 1];
+
+		int evenCout = 0;
+		for (int j = 0; j < cols; j++) {
+			dest[i][j] = src[i][j];
+
+			if (src[i][j] % 2 == 0) {
+				evenCout++;
+			}
+		}
+
+		dest[i][cols] = evenCout;
+    }
+    return dest;
+}
+
+void freeMatrix(int** matrix, int rows) {
+	for (int i = 0; i < rows; i++) {
+		delete[] matrix[i];
+	}
+	delete[] matrix;
+}
+
+int main() {
+    SetConsoleCP(65001);
+    SetConsoleOutputCP(65001);
+
+	int rows, cols;
+	cout << "Введіть кількість рядків: ";
+	cin >> rows;
+	cout << "Введіть кількість стовпців: ";
+	cin >> cols;
+
+	if (rows <= 0 || cols <= 0) {
+		cout << "Неправильні розміри матриці!" << endl;
+		return 1;
+	}
+
+	int** matrix = new int* [rows];
+	for (int i = 0; i < rows; i++) {
+		matrix[i] = new int[cols];
+	}
+
+	cout << "Введіть елементи матриці (" << rows << "x" << cols << "):" << endl;
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
+			cin >> matrix[i][j];
+		}
+	}
+
+	int** extendedMatrix = createExtendedMatrix(matrix, rows, cols);
+
+	cout << "\nРозширена матриця:" << endl;
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols + 1; j++) {
+			cout << extendedMatrix[i][j] << "\t";
+		}
+		cout << endl;
+	}
+
+	freeMatrix(matrix, rows);
+	freeMatrix(extendedMatrix, rows);
+
+    return 0;
+}
